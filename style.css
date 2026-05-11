@@ -98,10 +98,10 @@ body{
 }
 
 .countdown-section{
-  background:#e1c0f8; 
+  background:#FFC5D3; 
   padding:90px 20px;
   text-align:center;
-  color:rgb(0, 0, 0);
+  color:rgb(255, 255, 255);
 }
 
 .countdown{
@@ -159,7 +159,7 @@ body{
 .btn{
   display:inline-block;
   padding:15px 35px;
-  background:#e1c0f8;
+  background:#FFC5D3;
   color:rgb(0, 0, 0);
   text-decoration:none;
   border-radius:50px;
