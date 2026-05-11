@@ -55,11 +55,3 @@ const interval = setInterval(() => {
   document.getElementById("seconds").innerHTML = seconds;
 
 }, 1000);
-
-
-// RSVP
-document.getElementById("rsvpForm").addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  alert("Gracias por confirmar tu asistencia ❤️");
-});

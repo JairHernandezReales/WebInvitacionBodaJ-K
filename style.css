@@ -98,7 +98,7 @@ body{
 }
 
 .countdown-section{
-  background:#FFC5D3; 
+  background:#f7c7d2; 
   padding:90px 20px;
   text-align:center;
   color:rgb(255, 255, 255);
@@ -159,7 +159,7 @@ body{
 .btn{
   display:inline-block;
   padding:15px 35px;
-  background:#FFC5D3;
+  background:#f7c7d2;
   color:rgb(0, 0, 0);
   text-decoration:none;
   border-radius:50px;
@@ -240,33 +240,10 @@ h2{
   border-radius:20px;
 }
 
-.rsvp form{
-  max-width:500px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-.rsvp input{
-  padding:15px;
-  border:none;
-  border-radius:10px;
-}
-
-.rsvp button{
-  padding:15px;
-  border:none;
-  background:#d4af37;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
-}
-
 footer{
   padding:30px;
-  background:#111;
-  color:white;
+  background:#f7c7d2;
+  color:rgb(0, 0, 0);
   text-align:center;
 }
 
