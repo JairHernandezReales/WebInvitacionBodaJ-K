@@ -98,7 +98,7 @@ body{
 }
 
 .countdown-section{
-  background:#f7c7d2; 
+  background:#FFC5D3; 
   padding:90px 20px;
   text-align:center;
   color:rgb(255, 255, 255);
@@ -159,7 +159,7 @@ body{
 .btn{
   display:inline-block;
   padding:15px 35px;
-  background:#f7c7d2;
+  background:#FFC5D3;
   color:rgb(0, 0, 0);
   text-decoration:none;
   border-radius:50px;
@@ -242,7 +242,7 @@ h2{
 
 footer{
   padding:30px;
-  background:#f7c7d2;
+  background:#FFC5D3;
   color:rgb(0, 0, 0);
   text-align:center;
 }
