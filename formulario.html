@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar asistencia</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <form id="formAsistencia">
+        <h2>Confirma tu asistencia 💌</h2>
+
+    <input type="text" name="nombre" placeholder="Nombre completo" required>
+
+    <select name="acompanantes" required>
+        <option value="">Cantidad de acompañantes</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+    <textarea name="nombresAcompanantes" placeholder="Nombre de acompañantes"></textarea>
+
+    <select name="asistencia" required>
+        <option value="">Confirmar asistencia</option>
+        <option value="Sí">Sí asistiré</option>
+        <option value="No">No podré asistir</option>
+    </select>
+
+    <select name="regalo" required>
+        <option value="">Sobre o regalo</option>
+        <option value="Sobre">Sobre</option>
+        <option value="Regalo">Regalo</option>
+    </select>
+
+    <textarea name="mensaje" placeholder="Mensaje para los novios"></textarea>
+
+    <input type="text" name="cancion" placeholder="Canción que te gustaría escuchar">
+
+    <button type="submit" class="btn">Enviar</button>
+
+</form>
+
+<script src="app.js"></script>
+</body>
+</html>

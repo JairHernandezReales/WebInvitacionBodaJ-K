@@ -80,11 +80,12 @@
       <img class="reveal" src="FT1.JPG" alt="">
       <img class="reveal" src="FT2.JPG" alt="">
       <img class="reveal" src="FT3.JPG" alt="">
-      <img class="reveal" src="FT4.JPG" alt="">
       <img class="reveal" src="FT7.JPEG" alt="">
-      <img class="reveal" src="FT6.JPG" alt="">
       <img class="reveal" src="FT5.JPG" alt="">
-      <img class="reveal" src="FT6.JPG" alt="">
+      <img class="reveal" src="FT8.JPG" alt="">
+      <img class="reveal" src="FT9.JPG" alt="">
+      <img class="reveal" src="FT11.JPG" alt="">
+
     </div>
   </section>
 
@@ -106,7 +107,7 @@
         <p><strong>Dirección:</strong> San Isidro via tierralta</p>
         <p><strong>Hora:</strong> 5:00 PM</p>
         <br>
-        <a href="https://maps.app.goo.gl/XCtfLQmCXHqmFRBe6" target="_blank" class="btn">Cómo llegar!!</a>
+        <a class="btn" href="https://maps.app.goo.gl/XCtfLQmCXHqmFRBe6" target="_blank" >Cómo llegar!!</a>
       </div>
 
     </div>
@@ -122,17 +123,155 @@
           Si deseás realizarnos otro regalo, puedes confirmarlo en el formulario de asistencia...
         </p>
         <br><br>
-        <a href="https://forms.gle/mhpf2vPqdHLBwKvN6" target="_blank" class="btn">Confirmar asistencia!!</a>
+        <button class="btn" onclick="abrirPin()">Confirmar asistencia!!</button>
+        <!-- <a href="https://forms.gle/mhpf2vPqdHLBwKvN6" target="_blank" class="btn">Confirmar asistencia!!</a> -->
       </div>
     </div>   
     
   </section>
+<!-- MODAL FORMULARIO -->
+<div id="modalFormulario" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarFormulario()">&times;</span>
+    <h2>Confirmar Asistencia</h2>
+    
+    <form id="formAsistencia">
 
+      <input type="text" name="nombre" placeholder="Nombre completo" required>
+
+      <select name="acompanantes" id="acompanantesSelect" required>
+        <option value="">Cupo asignado</option>
+      </select>
+
+      <textarea name="nombresAcompanantes" placeholder="Nombre de acompañantes"></textarea>
+
+      <select name="asistencia" required>
+        <option value="">Confirmar asistencia</option>
+        <option value="Si, confirmo">Si, confirmo</option>
+        <option value="No podré asistir">No podré asistir</option>
+      </select>
+
+      <select name="regalo" required>
+        <option value="">Sobre o regalo</option>
+        <option value="Sobre">Sobre</option>
+        <option value="Regalo">Regalo</option>
+      </select>
+
+      <textarea name="mensaje" placeholder="Mensaje para los novios"></textarea>
+
+      <input type="text" name="cancion" placeholder="Canción que te gustaría escuchar">
+
+      <button type="submit" class="btn">Enviar</button>
+
+    </form>
+  </div>
+</div>
+
+<!-- MODAL PIN -->
+<div id="modalPin" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarPin()">&times;</span>
+    
+    <h2>Ingresa tu código 🌻</h2>
+
+    <input type="text" id="inputPin" placeholder="Código de invitación">
+
+    <button class="btn" onclick="validarPin()">Ingresar</button>
+
+    <p id="errorPin" style="color:red; display:none; margin-top:10px;">
+      Código inválido o ya usado
+    </p>
+  </div>
+</div>
+
+<!-- MODAL GRACIAS -->
+<div id="modalGracias" class="modal">
+  <div class="modal-content">
+    
+    <h2>¡Gracias! 🌻</h2>
+    <p style="margin-top:10px;">
+      Tu asistencia ha sido confirmada con éxito.
+    </p>
+
+    <button class="btn" onclick="cerrarGracias()">Cerrar</button>
+
+  </div>
+</div>
 
   <!-- FOOTER -->
   <footer>
     <p>Con amor, Kenia & Jair 🌻</p>
   </footer>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, query, where, getDocs, updateDoc, doc, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDWB3CngP_1BwK_vZIuMfvHNUsMcf0KHhQ",
+    authDomain: "invitacion-boda-jk.firebaseapp.com",
+    projectId: "invitacion-boda-jk",
+    storageBucket: "invitacion-boda-jk.firebasestorage.app",
+    messagingSenderId: "828919977652",
+    appId: "1:828919977652:web:fc208ccbb3af6da81e29e1"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.validarPin = async function() {
+
+  let input = document.getElementById("inputPin").value.trim();
+  let error = document.getElementById("errorPin");
+
+  const q = query(collection(db, "pines"), where("codigo", "==", input));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    error.style.display = "block";
+    return;
+  }
+
+  let docData = querySnapshot.docs[0];
+  let data = docData.data();
+
+  if (data.usado) {
+    error.style.display = "block";
+    return;
+  }
+
+  // 🔥 GUARDAR DATOS
+  window.nombreInvitado = data.nombre;
+  window.limiteAcompanantes = data.acompanantes;
+
+  await updateDoc(doc(db, "pines", docData.id), {
+    usado: true
+  });
+
+  cerrarPin();
+
+  // 🔥 IMPORTANTE ORDEN
+  generarOpcionesAcompanantes();
+
+  abrirFormulario();
+};
+
+// GUARDAMOS EL LIMITE DE ACOMPAÑANTES EN UNA VARIABLE GLOBAL PARA USARLO EN EL FORMULARIO
+
+function generarOpcionesAcompanantes() {
+  let select = document.getElementById("acompanantesSelect");
+
+  select.innerHTML = '<option value="">Cantidad de acompañantes</option>';
+
+  for (let i = 0; i <= window.limiteAcompanantes; i++) {
+    let option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    select.appendChild(option);
+  }
+}
+
+</script>
 
   <script src="app.js"></script>
 </body>
