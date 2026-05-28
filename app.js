@@ -82,7 +82,6 @@ document.getElementById("formAsistencia").addEventListener("submit", function(e)
 
   datos.append("entry.2092238618", form.nombre.value);
   datos.append("entry.2000174007", form.acompanantes.value);
-  datos.append("entry.1495685309", form.nombresAcompanantes.value);
   datos.append("entry.1653027947", form.asistencia.value);
   datos.append("entry.1557746772", form.regalo.value);
   datos.append("entry.1321647054", form.mensaje.value);
@@ -95,18 +94,12 @@ document.getElementById("formAsistencia").addEventListener("submit", function(e)
   });
 
   form.reset();
+
   cerrarFormulario();
 });
 
 function abrirFormulario(){
   document.getElementById("modalFormulario").style.display = "block";
-
-  if(window.nombreInvitado){
-    document.getElementById("nombreInput").value = window.nombreInvitado;
-  }
-
-  // 🔥 generar opciones según el invitado
-  generarOpcionesAcompanantes();
 }
 
 function cerrarFormulario() {
@@ -145,6 +138,3 @@ function cerrarPin() {
   document.getElementById("modalPin").style.display = "none";
 }
 
-function mostrarBienvenida(nombre){
-  document.getElementById("bienvenido").innerText = "Bienvenido/a " + nombre + " 🌻";
-}

@@ -21,7 +21,8 @@
 
 <a href="https://wa.me/573126019598" 
    class="whatsapp-float" 
-   target="_blank">
+   target="_blank"
+   rel="noopener">
    <i class="fa-brands fa-whatsapp fa-lg"></i>
 </a>
 
@@ -107,7 +108,7 @@
         <p><strong>Dirección:</strong> San Isidro via tierralta</p>
         <p><strong>Hora:</strong> 5:00 PM</p>
         <br>
-        <a class="btn" href="https://maps.app.goo.gl/XCtfLQmCXHqmFRBe6" target="_blank" >Cómo llegar!!</a>
+        <a class="btn" href="https://maps.app.goo.gl/XCtfLQmCXHqmFRBe6" target="_blank" rel="noopener">Cómo llegar!!</a>
       </div>
 
     </div>
@@ -126,9 +127,9 @@
         <button class="btn" onclick="abrirPin()">Confirmar asistencia!!</button>
         <!-- <a href="https://forms.gle/mhpf2vPqdHLBwKvN6" target="_blank" class="btn">Confirmar asistencia!!</a> -->
       </div>
-    </div>   
-    
+    </div>       
   </section>
+
 <!-- MODAL FORMULARIO -->
 <div id="modalFormulario" class="modal">
   <div class="modal-content">
@@ -142,8 +143,6 @@
       <select name="acompanantes" id="acompanantesSelect" required>
         <option value="">Cupo asignado</option>
       </select>
-
-      <textarea name="nombresAcompanantes" placeholder="Nombre de acompañantes"></textarea>
 
       <select name="asistencia" required>
         <option value="">Confirmar asistencia</option>
@@ -241,7 +240,6 @@
   }
 
   // 🔥 GUARDAR DATOS
-  window.nombreInvitado = data.nombre;
   window.limiteAcompanantes = data.acompanantes;
 
   await updateDoc(doc(db, "pines", docData.id), {
