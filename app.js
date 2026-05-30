@@ -154,5 +154,5 @@ function mostrarBienvenida(nombre){
 }
 
 function mostrarGracias(nombre){
-  document.getElementById("mensajeGracias").innerText = nombre +", " +  "tu asistencia ha sido confirmada con éxito." + " 🌻";
+  document.getElementById("mensajeGracias").innerText = nombre+", " +  "tu asistencia ha sido confirmada con éxito." + " 🌻";
 }
