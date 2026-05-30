@@ -76,12 +76,23 @@ reveals.forEach(el => observer.observe(el));
 document.getElementById("formAsistencia").addEventListener("submit", function(e) {
   e.preventDefault();
 
+  
+
+  let acompanantes = 0;
+
+  // 🔥 SOLO SI TIENE ACOMPAÑANTES
+  if(window.limiteAcompanantes > 0){
+    acompanantes = document.getElementById("acompanantesSelect").value || 0;
+  }
+
+  console.log("Acompañantes seleccionados:", acompanantes);
+  
   let form = this;
 
   let datos = new FormData();
 
   datos.append("entry.2092238618", form.nombre.value);
-  datos.append("entry.2000174007", form.acompanantes.value);
+  datos.append("entry.2000174007", acompanantes);
   datos.append("entry.1653027947", form.asistencia.value);
   datos.append("entry.1557746772", form.regalo.value);
   datos.append("entry.1321647054", form.mensaje.value);
@@ -138,3 +149,10 @@ function cerrarPin() {
   document.getElementById("modalPin").style.display = "none";
 }
 
+function mostrarBienvenida(nombre){
+  document.getElementById("bienvenida").innerText = "BIENVENID@  " + nombre + " 🌻";
+}
+
+function mostrarGracias(nombre){
+  document.getElementById("mensajeGracias").innerText = nombre +", " +  "tu asistencia ha sido confirmada con éxito." + " 🌻";
+}

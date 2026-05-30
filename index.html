@@ -134,15 +134,20 @@
 <div id="modalFormulario" class="modal">
   <div class="modal-content">
     <span class="close" onclick="cerrarFormulario()">&times;</span>
+    <h3 style="margin-top:5px; margin-bottom:15px;" id="bienvenida"></h3>
     <h2>Confirmar Asistencia</h2>
     
     <form id="formAsistencia">
 
       <input type="text" name="nombre" placeholder="Nombre completo" required>
 
-      <select name="acompanantes" id="acompanantesSelect" required>
-        <option value="">Cupo asignado</option>
-      </select>
+      <input type="hidden" id="acompanantesHidden" value="0">
+
+      <div id="contenedorAcompanantes"> 
+        <select name="acompanantes" id="acompanantesSelect" required>
+          <option selected value="0">Cupo asignado</option>
+        </select>
+      </div>
 
       <select name="asistencia" required>
         <option value="">Confirmar asistencia</option>
@@ -188,8 +193,7 @@
   <div class="modal-content">
     
     <h2>¡Gracias! 🌻</h2>
-    <p style="margin-top:10px;">
-      Tu asistencia ha sido confirmada con éxito.
+    <p style="margin-top:10px;" id="mensajeGracias">
     </p>
 
     <button class="btn" onclick="cerrarGracias()">Cerrar</button>
@@ -241,6 +245,7 @@
 
   // 🔥 GUARDAR DATOS
   window.limiteAcompanantes = data.acompanantes;
+  window.nombreInvitado = data.nombre;
 
   await updateDoc(doc(db, "pines", docData.id), {
     usado: true
@@ -252,23 +257,40 @@
   generarOpcionesAcompanantes();
 
   abrirFormulario();
+  mostrarBienvenida(data.nombre);
+  mostrarGracias(data.nombre);
 };
 
 // GUARDAMOS EL LIMITE DE ACOMPAÑANTES EN UNA VARIABLE GLOBAL PARA USARLO EN EL FORMULARIO
 
 function generarOpcionesAcompanantes() {
+
+  let contenedor = document.getElementById("contenedorAcompanantes");
   let select = document.getElementById("acompanantesSelect");
+
+  // 🔥 SI NO TIENE ACOMPAÑANTES
+  if(window.limiteAcompanantes <= 0){
+
+    contenedor.style.display = "none";
+
+    return;
+  }
+
+  // 🔥 MOSTRAR CONTENEDOR
+  contenedor.style.display = "block";
 
   select.innerHTML = '<option value="">Cantidad de acompañantes</option>';
 
-  for (let i = 0; i <= window.limiteAcompanantes; i++) {
+  for (let i = 1; i <= window.limiteAcompanantes; i++) {
+
     let option = document.createElement("option");
+
     option.value = i;
     option.textContent = i;
+
     select.appendChild(option);
   }
 }
-
 </script>
 
   <script src="app.js"></script>

@@ -417,6 +417,10 @@ footer{
   font-size:16px;
 }
 
+#contenedorAcompanantes{
+  display:none;
+}
+
 /* ANIMACIONES */
 @keyframes fadeIn{
   from{opacity:0;}
