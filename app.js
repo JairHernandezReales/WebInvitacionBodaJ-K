@@ -156,3 +156,17 @@ function mostrarBienvenida(nombre){
 function mostrarGracias(nombre){
   document.getElementById("mensajeGracias").innerText = nombre+", " +  "tu asistencia ha sido confirmada con éxito." + " 🌻";
 }
+
+function mostrarMensajeValido(){
+
+  const mensaje = document.getElementById("mensajeValido");
+
+  // mostrar
+  mensaje.style.display = "block";
+
+  // ocultar después de 10 segundos
+  setTimeout(() => {
+    mensaje.style.display = "none";
+  }, 6000);
+
+}

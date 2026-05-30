@@ -134,6 +134,10 @@
 <div id="modalFormulario" class="modal">
   <div class="modal-content">
     <span class="close" onclick="cerrarFormulario()">&times;</span>
+    <p id="mensajeValido" 
+      style="background-color: #FFC5D3; color: #000000; font-weight:italic; margin-top:10px;margin-bottom: 10px; border-radius: 5px; display:none;">
+      Código válido, completa el formulario
+    </p>
     <h3 style="margin-top:5px; margin-bottom:15px;" id="bienvenida"></h3>
     <h2>Confirmar Asistencia</h2>
     
@@ -180,7 +184,7 @@
 
     <input type="text" id="inputPin" placeholder="Código de invitación">
 
-    <button class="btn" onclick="validarPin()">Ingresar</button>
+    <button class="btn" onclick="validarPin()">Validar pin</button>
 
     <p id="errorPin" style="color:red; display:none; margin-top:10px;">
       Código inválido o ya usado
@@ -257,6 +261,7 @@
   generarOpcionesAcompanantes();
 
   abrirFormulario();
+  mostrarMensajeValido();
   mostrarBienvenida(data.nombre);
   mostrarGracias(data.nombre);
 };
