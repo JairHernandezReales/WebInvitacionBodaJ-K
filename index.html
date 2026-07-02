@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jair Hernández & Kenia Blanco</title>
   <script src="https://kit.fontawesome.com/4cdb4e4662.js" crossorigin="anonymous"></script>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png" />
 
   <link rel="stylesheet" href="style.css">
 
@@ -160,7 +163,7 @@
       </select>
 
       <select name="regalo" required>
-        <option value="">Sobre o regalo</option>
+        <option value="">Sobre o regalo (elegir una opción)</option>
         <option value="Sobre">Sobre</option>
         <option value="Regalo">Regalo</option>
       </select>
@@ -284,7 +287,7 @@ function generarOpcionesAcompanantes() {
   // 🔥 MOSTRAR CONTENEDOR
   contenedor.style.display = "block";
 
-  select.innerHTML = '<option value="">Cantidad de acompañantes</option>';
+  select.innerHTML = '<option value="">Confirmar total invitados</option>';
 
   for (let i = 1; i <= window.limiteAcompanantes; i++) {
 
